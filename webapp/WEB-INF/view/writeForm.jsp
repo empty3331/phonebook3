@@ -19,7 +19,7 @@
 	<button type = "submit">등록</button>
 	</form>
 	
-	<p><a href ="" >리스트로 돌아가기</a></p>
+	<p><a href ="${pageContext.request.contextPath }/phone/list" >리스트로 돌아가기</a></p>
 	
 </body>
 </html>

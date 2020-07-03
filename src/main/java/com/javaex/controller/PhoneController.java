@@ -31,14 +31,14 @@ public class PhoneController {
 		
 		model.addAttribute("pList",pList);
 		
-		return "/WEB-INF/view/list.jsp";
+		return "list";
 	}
 	
 	//내용추가 폼 이동
 	@RequestMapping("/writeForm" )
 	public String writeForm() {
 		
-		return "/WEB-INF/view/writeForm.jsp";
+		return "writeForm";
 	}
 	
 	
@@ -72,9 +72,23 @@ public class PhoneController {
 		
 		model.addAttribute("uVo",vo);
 		
-		return"/WEB-INF/view/updateForm.jsp";
+		return"updateForm";
 		
 	}
+	
+	
+	/*
+	@RequestMapping("/updateForm/{personId}" )
+	public String updateForm(Model model,@PathVariable("personId") int personId) {
+		System.out.println("/phone/updateForm");
+		
+		PhoneDao pDao = new PhoneDao();
+		PersonVo vo = pDao.getPerson(personId);
+		
+		model.addAttribute("uVo",vo);
+		
+		return"/WEB-INF/view/updateForm.jsp"; 
+	 */
 	
 	@RequestMapping("/update" )
 	public String update(@ModelAttribute PersonVo personVo) {

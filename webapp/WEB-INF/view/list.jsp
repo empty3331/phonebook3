@@ -33,8 +33,8 @@
 		    <td>회사(company)</td><td>${personVo.company }</td>
 		</tr>
 		<tr>
-			<td><a href ="/phonebook3/phone/updateForm?personId=${personVo.personId}">수정</a></td>
-			<td><a href ="/phonebook3/phone/delete?personId=${personVo.personId}">삭제</a></td>
+			<td><a href ="${pageContext.request.contextPath }/phone/updateForm?personId=${personVo.personId}">수정</a></td>
+			<td><a href ="${pageContext.request.contextPath }/phone/delete?personId=${personVo.personId}">삭제</a></td>
 		</tr>
 		
 		
@@ -44,6 +44,6 @@
 	<br>
 	</c:forEach>
 	
-	<p><a href ="/phonebook3/phone/writeForm" >추가번호 등록</a></p>
+	<p><a href ="${pageContext.request.contextPath }/phone/writeForm" >추가번호 등록</a></p>
 </body>
 </html>
