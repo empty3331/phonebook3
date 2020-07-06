@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,18 +15,16 @@ import com.javaex.vo.PersonVo;
 @Controller
 @RequestMapping("/phone")
 public class PhoneController {
-	//필드
-	//생성자
-	//g/s
-	//일반메소드
+	
+	@Autowired
+	PhoneDao phoneDao;
 	
 	
 	//전화번호부 목록
 	@RequestMapping("/list" )
 	public String list(Model model) {
 		System.out.println("/phone/list");
-		
-		PhoneDao phoneDao = new PhoneDao();
+				
 		List<PersonVo> pList = phoneDao.getPersonList();
 		
 		
@@ -58,8 +57,7 @@ public class PhoneController {
 		
 		System.out.println(personVo.toString());
 		
-		PhoneDao pDao = new PhoneDao();
-		pDao.personInsert(personVo);
+		phoneDao.personInsert(personVo);
 		return "redirect:/phone/list";
 	}
 	
@@ -67,8 +65,8 @@ public class PhoneController {
 	public String updateForm(Model model,@RequestParam("personId") int personId) {
 		System.out.println("/phone/updateForm");
 		
-		PhoneDao pDao = new PhoneDao();
-		PersonVo vo = pDao.getPerson(personId);
+
+		PersonVo vo = phoneDao.getPerson(personId);
 		
 		model.addAttribute("uVo",vo);
 		
@@ -96,8 +94,8 @@ public class PhoneController {
 		
 		System.out.println(personVo.toString());
 		
-		PhoneDao pDao = new PhoneDao();
-		pDao.personUpdate(personVo);
+		
+		phoneDao.personUpdate(personVo);
 		
 		return "redirect:/phone/list";
 		
@@ -106,8 +104,8 @@ public class PhoneController {
 	@RequestMapping("/delete" )
 	public String delete(@RequestParam("personId") int personId) {
 		
-		PhoneDao pDao = new PhoneDao();
-		pDao.personDelete(personId);
+		
+		phoneDao.personDelete(personId);
 		
 		
 		

@@ -8,31 +8,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.javaex.vo.PersonVo;
 
+@Repository
 public class PhoneDao {
+	
+		@Autowired
+		private DataSource dataSource;
 	
 	// 0. import java.sql.*;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		private String driver = "oracle.jdbc.driver.OracleDriver";
-		private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		private String id = "phonedb";
-		private String pw = "phonedb";
 
 		private void getConnection() {
 			try {
 				// 1. JDBC 드라이버 (Oracle) 로딩
-				Class.forName(driver);
-
 				// 2. Connection 얻어오기
-				conn = DriverManager.getConnection(url, id, pw);
+				conn = dataSource.getConnection();
 				// System.out.println("접속성공");
 
-			} catch (ClassNotFoundException e) {
-				System.out.println("error: 드라이버 로딩 실패 - " + e);
 			} catch (SQLException e) {
 				System.out.println("error:" + e);
 			}
